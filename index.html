@@ -25,7 +25,7 @@
         .font-serif { font-family: 'Playfair Display', serif; }
 
         .glass-card {
-            background: var/(--glass);
+            background: var(--glass);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 24px;
@@ -43,10 +43,6 @@
                         url('https://images.unsplash.com/photo-1558905619-171549467724?auto=format&fit=crop&q=80&w=2000');
             background-size: cover;
             background-position: center;
-        }
-
-        .text-glow {
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         .nav-link {
@@ -76,11 +72,18 @@
             border-radius: 50px;
             box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
             transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-premium:hover {
             transform: scale(1.05);
             box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-premium:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         @keyframes float {
@@ -153,9 +156,6 @@
                     <a href="#contact" class="btn-premium flex items-center justify-center">
                         Start Your Transformation <i class="fas fa-arrow-right ml-3"></i>
                     </a>
-                    <a href="#services" class="px-8 py-4 rounded-full border border-white/20 hover:bg-white/5 transition-all text-center">
-                        View Services
-                    </a>
                 </div>
             </div>
             <div class="hidden md:block relative">
@@ -184,86 +184,26 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
                 <div class="glass-card p-10 group">
                     <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
                         <i class="fas fa-droplet text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Smart Irrigation</h3>
-                    <p class="text-gray-400 leading-relaxed mb-6">AI-driven water management designed for California's climate cycles. Save 40% more water while keeping lawns pristine.</p>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><i class="fas fa-check text-[#d4af37] mr-2"></i> Real-time Soil Monitoring</li>
-                        <li><i class="fas fa-check text-[#d4af37] mr-2"></i> Remote App Control</li>
-                    </ul>
+                    <p class="text-gray-400 leading-relaxed">AI-driven water management designed for California's climate cycles. Save 40% more water while keeping lawns pristine.</p>
                 </div>
-
-                <!-- Service 2 -->
                 <div class="glass-card p-10 group">
                     <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
                         <i class="fas fa-scissors text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Boutique Sculpting</h3>
-                    <p class="text-gray-400 leading-relaxed mb-6">Precision hedging and topiary work that treats your shrubs like living sculptures. Master-class aesthetic results.</p>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><i class="fas fa-check text-[#d4af37] mr-2"></i> Custom Hedge Design</li>
-                        <li><i class="fas fa-check text-[#d4af37] mr-2"></i> Seasonal Growth Audits</li>
-                    </ul>
+                    <p class="text-gray-400 leading-relaxed">Precision hedging and topiary work that treats your shrubs like living sculptures.</p>
                 </div>
-
-                <!-- Service 3 -->
                 <div class="glass-card p-10 group">
                     <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
                         <i class="fas fa-vial text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Nutrient Bio-Tech</h3>
-                    <p class="text-gray-400 leading-relaxed mb-6">Custom organic serum injections for your lawn. We analyze your soil at a molecular level to feed what's missing.</p>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><i class="fas fa-check text-[#d4af37] mr-2"></i> 100% Pet/Family Safe</li>
-                        <li><i class="fas fa-check text-[#d4af37] mr-2"></i> Deep Root Fertilization</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Past Client Success -->
-    <section id="success" class="py-24 px-6 overflow-hidden">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center text-4xl md:text-6xl font-serif mb-20">California’s Quiet Luxury</h2>
-            
-            <div class="space-y-20">
-                <!-- Case 1 -->
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="w-full md:w-1/2 image-reveal shadow-2xl h-[400px]">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200" alt="Estate Napa" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full md:w-1/2 space-y-6">
-                        <div class="flex space-x-1 text-[#d4af37]">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <h4 class="text-3xl font-bold italic font-serif">"The Napa Valley Transformation"</h4>
-                        <p class="text-gray-400 text-lg leading-relaxed italic">
-                            "Margo's team took our dormant 4-acre vineyard estate and turned the surrounding grounds into a lush, vibrant paradise that stays green even in the height of August. Their smart systems are magic."
-                        </p>
-                        <p class="font-bold uppercase tracking-widest text-sm">— Julian V., Estate Manager</p>
-                    </div>
-                </div>
-
-                <!-- Case 2 -->
-                <div class="flex flex-col md:flex-row-reverse items-center gap-12">
-                    <div class="w-full md:w-1/2 image-reveal shadow-2xl h-[400px]">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200" alt="Modern Malibu" class="w-full h-full object-cover">
-                    </div>
-                    <div class="w-full md:w-1/2 space-y-6 md:text-right">
-                        <div class="flex md:justify-end space-x-1 text-[#d4af37]">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <h4 class="text-3xl font-bold italic font-serif">"Malibu Zen Perfection"</h4>
-                        <p class="text-gray-400 text-lg leading-relaxed italic">
-                            "Clean lines and sustainable drought-tolerant beauty. They understood our modern architectural vision and brought it to life. Truly the best in CA."
-                        </p>
-                        <p class="font-bold uppercase tracking-widest text-sm">— Sarah L., Malibu Resident</p>
-                    </div>
+                    <p class="text-gray-400 leading-relaxed">Custom organic serum injections for your lawn. We analyze soil at a molecular level.</p>
                 </div>
             </div>
         </div>
@@ -279,52 +219,50 @@
             <div class="relative z-10 grid md:grid-cols-2 gap-16">
                 <div>
                     <h2 class="text-4xl md:text-5xl font-serif mb-8">Secure Your <br><span class="text-[#d4af37]">Consultation.</span></h2>
-                    <p class="text-gray-400 mb-10">Limited seasonal slots available for full estate management. We currently service Los Angeles, Napa Valley, and the Bay Area.</p>
+                    <p class="text-gray-400 mb-10">Limited seasonal slots available for full estate management. Servicing LA, Napa, and the Bay Area.</p>
                     
                     <div class="space-y-6">
-                        <div class="flex items-center space-x-4">
-                            <i class="fas fa-phone text-[#d4af37]"></i>
-                            <span>(310) 555-0198</span>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <i class="fas fa-envelope text-[#d4af37]"></i>
-                            <span>hello@margoscaca.com</span>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <i class="fas fa-map-marker-alt text-[#d4af37]"></i>
-                            <span>Beverly Hills, CA 90210</span>
-                        </div>
+                        <div class="flex items-center space-x-4"><i class="fas fa-phone text-[#d4af37]"></i><span>(310) 555-0198</span></div>
+                        <div class="flex items-center space-x-4"><i class="fas fa-envelope text-[#d4af37]"></i><span>hello@margoscaca.com</span></div>
+                        <div class="flex items-center space-x-4"><i class="fas fa-map-marker-alt text-[#d4af37]"></i><span>Beverly Hills, CA 90210</span></div>
                     </div>
                 </div>
 
-                <form id="contactForm" class="space-y-6" onsubmit="event.preventDefault(); showSuccess();">
-                    <div>
-                        <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Full Name</label>
-                        <input type="text" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all" placeholder="John Doe">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Estate Location</label>
-                        <select class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all">
-                            <option>Los Angeles / Beverly Hills</option>
-                            <option>Napa / Sonoma Valley</option>
-                            <option>San Francisco / Bay Area</option>
-                            <option>Orange County</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Message</label>
-                        <textarea rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all" placeholder="Tell us about your property goals..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-premium w-full">Send Inquiry</button>
-                </form>
+                <div class="relative">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Full Name</label>
+                            <input type="text" id="cust_name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Your Email (To receive AI Quote)</label>
+                            <input type="email" id="cust_email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all" placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Estate Location</label>
+                            <select id="cust_location" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all">
+                                <option>Los Angeles / Beverly Hills</option>
+                                <option>Napa / Sonoma Valley</option>
+                                <option>San Francisco / Bay Area</option>
+                                <option>Orange County</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Message</label>
+                            <textarea id="cust_message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all" placeholder="Tell us about your property goals..."></textarea>
+                        </div>
+                        <button type="submit" id="submitBtn" class="btn-premium w-full">Send Inquiry</button>
+                    </form>
 
-                <div id="successMsg" class="hidden absolute inset-0 bg-[#050a06]/95 flex flex-col items-center justify-center text-center p-10 z-20">
-                    <div class="w-20 h-20 bg-[#d4af37] rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-check text-3xl text-black"></i>
+                    <!-- Success Message Overlay -->
+                    <div id="successMsg" class="hidden absolute inset-0 bg-[#050a06]/95 flex flex-col items-center justify-center text-center p-10 z-20">
+                        <div class="w-20 h-20 bg-[#d4af37] rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-check text-3xl text-black"></i>
+                        </div>
+                        <h3 class="text-3xl font-serif mb-4">Request Received</h3>
+                        <p class="text-gray-400">Our concierge will contact you within 2 hours.</p>
+                        <button onclick="document.getElementById('successMsg').classList.add('hidden')" class="mt-8 text-[#d4af37] font-bold underline">Submit another</button>
                     </div>
-                    <h3 class="text-3xl font-serif mb-4">Request Received</h3>
-                    <p class="text-gray-400">Our concierge will contact you within 2 hours to schedule a walkthrough.</p>
-                    <button onclick="document.getElementById('successMsg').classList.add('hidden')" class="mt-8 text-[#d4af37] font-bold underline">Submit another</button>
                 </div>
             </div>
         </div>
@@ -337,31 +275,66 @@
                 <div class="w-8 h-8 bg-[#d4af37] rounded flex items-center justify-center">
                     <i class="fas fa-leaf text-[#050a06] text-sm"></i>
                 </div>
-                <span class="text-xl font-extrabold uppercase">Margos<span class="text-[#d4af37]">CA</span></span>
+                <span class="text-xl font-extrabold uppercase tracking-tighter">Margos<span class="text-[#d4af37]">CA</span></span>
             </div>
-            
-            <p class="text-gray-500 text-sm">© 2026 Margo's Lawncare CA. All Rights Reserved. Lic #9988221.</p>
-            
-            <div class="flex space-x-6 text-xl">
-                <a href="#" class="hover:text-[#d4af37] transition-colors"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-[#d4af37] transition-colors"><i class="fab fa-linkedin"></i></a>
-            </div>
+            <p class="text-gray-500 text-sm">© 2026 Margo's Lawncare CA.</p>
         </div>
     </footer>
 
     <script>
-        function showSuccess() {
-            document.getElementById('successMsg').classList.remove('hidden');
-            document.getElementById('contactForm').reset();
-        }
+        // YOUR DEPLOYED URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxK49CFWu4xbKWeapn_Ryo1ECF3F719Dv80TDugnzWM0ZuBFEdtY3KKozNVhxOq-rx6/exec';
+        
+        const form = document.getElementById('contactForm');
+        const btn = document.getElementById('submitBtn');
+        const successOverlay = document.getElementById('successMsg');
 
-        // Simple Parallax Effect on Scroll
-        window.addEventListener('scroll', () => {
-            const scroll = window.pageYOffset;
-            document.querySelector('.hero-gradient').style.backgroundPositionY = -(scroll * 0.5) + 'px';
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // UI Update
+            btn.disabled = true;
+            btn.innerText = "Processing Elite Request...";
+
+            const data = {
+                name: document.getElementById('cust_name').value,
+                email: document.getElementById('cust_email').value,
+                location: document.getElementById('cust_location').value,
+                message: document.getElementById('cust_message').value
+            };
+
+            // Using text/plain ensures Google Apps Script receives the JSON correctly 
+            // without triggering complex CORS pre-flight checks.
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8',
+                },
+            })
+            .then(response => {
+                // Show Success Message
+                successOverlay.classList.remove('hidden'); 
+                form.reset();
+                btn.disabled = false;
+                btn.innerText = "Send Inquiry";
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert("The AI Concierge is currently busy. Please try again or call us directly.");
+                btn.disabled = false;
+                btn.innerText = "Send Inquiry";
+            });
         });
 
-        // Intersection Observer for animations
+        // UI Scroll Effects
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            const heroBg = document.querySelector('.hero-gradient');
+            if(heroBg) heroBg.style.backgroundPositionY = -(scroll * 0.5) + 'px';
+        });
+
+        // Reveal Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
