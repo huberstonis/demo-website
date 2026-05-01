@@ -282,8 +282,8 @@
     </footer>
 
     <script>
-        // YOUR DEPLOYED URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxK49CFWu4xbKWeapn_Ryo1ECF3F719Dv80TDugnzWM0ZuBFEdtY3KKozNVhxOq-rx6/exec';
+        // PASTE YOUR NEW WEB APP URL BELOW BETWEEN THE QUOTES
+        const scriptURL = 'PASTE_YOUR_COPIED_URL_HERE';
         
         const form = document.getElementById('contactForm');
         const btn = document.getElementById('submitBtn');
@@ -291,8 +291,6 @@
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            
-            // UI Update
             btn.disabled = true;
             btn.innerText = "Processing Elite Request...";
 
@@ -303,17 +301,12 @@
                 message: document.getElementById('cust_message').value
             };
 
-            // Using text/plain ensures Google Apps Script receives the JSON correctly 
-            // without triggering complex CORS pre-flight checks.
             fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'text/plain;charset=utf-8',
-                },
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }
             })
-            .then(response => {
-                // Show Success Message
+            .then(res => {
                 successOverlay.classList.remove('hidden'); 
                 form.reset();
                 btn.disabled = false;
@@ -321,20 +314,18 @@
             })
             .catch(error => {
                 console.error('Error!', error.message);
-                alert("The AI Concierge is currently busy. Please try again or call us directly.");
+                alert("System busy. Please try again.");
                 btn.disabled = false;
                 btn.innerText = "Send Inquiry";
             });
         });
 
-        // UI Scroll Effects
+        // Keep your parallax and observer code below this line
         window.addEventListener('scroll', () => {
             const scroll = window.pageYOffset;
             const heroBg = document.querySelector('.hero-gradient');
             if(heroBg) heroBg.style.backgroundPositionY = -(scroll * 0.5) + 'px';
         });
-
-        // Reveal Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -343,7 +334,6 @@
                 }
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.glass-card').forEach(card => {
             card.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-1000');
             observer.observe(card);
