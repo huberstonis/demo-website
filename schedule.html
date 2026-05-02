@@ -24,13 +24,22 @@
         <p class="text-gray-400 text-sm mb-8 text-center">Please select your preferred date and time for Mike's onsite inspection.</p>
         
         <form id="scheduleForm" class="space-y-6">
+            <!-- Date Input -->
             <div>
                 <label class="block text-xs font-bold uppercase tracking-widest mb-2 opacity-60">Preferred Date</label>
                 <input type="date" id="book_date" required class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-[#d4af37] text-white">
             </div>
+
+            <!-- Time Input -->
             <div>
                 <label class="block text-xs font-bold uppercase tracking-widest mb-2 opacity-60">Preferred Time</label>
                 <input type="time" id="book_time" required class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-[#d4af37] text-white">
+            </div>
+
+            <!-- Phone Number Input (Added) -->
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-widest mb-2 opacity-60">Phone Number (For Mike to call you)</label>
+                <input type="tel" id="book_phone" required class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-[#d4af37] text-white" placeholder="(555) 000-0000">
             </div>
 
             <!-- Hidden email field populated via URL -->
@@ -75,6 +84,7 @@
             const data = {
                 type: 'SCHEDULE', 
                 email: emailField.value || "no-email-provided",
+                phone: document.getElementById('book_phone').value, // Added Phone Field
                 date: document.getElementById('book_date').value,
                 time: document.getElementById('book_time').value
             };
