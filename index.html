@@ -45,10 +45,7 @@
             background-position: center;
         }
 
-        .nav-link {
-            position: relative;
-        }
-
+        .nav-link { position: relative; }
         .nav-link::after {
             content: '';
             position: absolute;
@@ -59,10 +56,7 @@
             background: var(--accent);
             transition: width 0.3s;
         }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
+        .nav-link:hover::after { width: 100%; }
 
         .btn-premium {
             background: linear-gradient(45deg, #d4af37, #f4d03f);
@@ -74,6 +68,8 @@
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            display: inline-block;
+            text-align: center;
         }
 
         .btn-premium:hover {
@@ -91,7 +87,6 @@
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
-
         .floating { animation: float 6s ease-in-out infinite; }
 
         .image-reveal {
@@ -99,16 +94,9 @@
             overflow: hidden;
             border-radius: 24px;
         }
+        .image-reveal img { transition: transform 0.8s; }
+        .image-reveal:hover img { transform: scale(1.1); }
 
-        .image-reveal img {
-            transition: transform 0.8s;
-        }
-
-        .image-reveal:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050a06; }
         ::-webkit-scrollbar-thumb { background: #1a4d2e; border-radius: 10px; }
@@ -128,8 +116,7 @@
             
             <div class="hidden md:flex space-x-10 font-semibold tracking-wide">
                 <a href="#services" class="nav-link">Expertise</a>
-                <a href="#success" class="nav-link">Success Stories</a>
-                <a href="#about" class="nav-link">Our Legacy</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
 
             <a href="#contact" class="hidden md:block btn-premium text-sm py-2 px-6">Book an Audit</a>
@@ -150,10 +137,10 @@
                     <span class="text-[#d4af37] italic">Every Blade.</span>
                 </h1>
                 <p class="text-xl text-gray-300 max-w-lg leading-relaxed">
-                    Beyond maintenance. We engineer sustainable, luxury outdoor environments for California's most prestigious estates. From Malibu to Napa, Margo’s is the gold standard.
+                    Beyond maintenance. We engineer sustainable, luxury outdoor environments for California's most prestigious estates.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a href="#contact" class="btn-premium flex items-center justify-center">
+                    <a href="#contact" class="btn-premium">
                         Start Your Transformation <i class="fas fa-arrow-right ml-3"></i>
                     </a>
                 </div>
@@ -161,11 +148,7 @@
             <div class="hidden md:block relative">
                 <div class="floating">
                     <div class="image-reveal border-2 border-[#d4af37]/30 shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1592595821035-98470043189c?auto=format&fit=crop&q=80&w=800" alt="Luxury Lawn" class="w-full">
-                    </div>
-                    <div class="absolute -bottom-10 -left-10 glass-card p-6 flex items-center space-x-4 max-w-xs">
-                        <div class="bg-green-500 w-3 h-3 rounded-full animate-pulse"></div>
-                        <p class="text-sm font-bold">12 Active Projects in Beverly Hills Today</p>
+                        <img src="https://images.unsplash.com/photo-1592595821035-98470043189c?auto=format&fit=crop&q=80&w=800" alt="Luxury Lawn">
                     </div>
                 </div>
             </div>
@@ -175,35 +158,28 @@
     <!-- Services Section -->
     <section id="services" class="py-24 px-6 bg-[#0a0f0b]">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                <div class="max-w-2xl">
-                    <h2 class="text-4xl md:text-6xl font-serif mb-6">Our Expertise</h2>
-                    <p class="text-gray-400 text-lg">We merge biological science with high-end aesthetic design to provide services that aren't just seen, but felt.</p>
-                </div>
-                <div class="text-[#d4af37] font-bold text-xl uppercase tracking-tighter">Services 2026 Edition</div>
-            </div>
-
+            <h2 class="text-4xl md:text-6xl font-serif mb-16 text-center">Our Expertise</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="glass-card p-10 group">
                     <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
                         <i class="fas fa-droplet text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Smart Irrigation</h3>
-                    <p class="text-gray-400 leading-relaxed">AI-driven water management designed for California's climate cycles. Save 40% more water while keeping lawns pristine.</p>
+                    <p class="text-gray-400">AI-driven water management designed for California's climate cycles.</p>
                 </div>
                 <div class="glass-card p-10 group">
                     <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
                         <i class="fas fa-scissors text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Boutique Sculpting</h3>
-                    <p class="text-gray-400 leading-relaxed">Precision hedging and topiary work that treats your shrubs like living sculptures.</p>
+                    <p class="text-gray-400">Precision hedging and topiary work that treats shrubs like living sculptures.</p>
                 </div>
                 <div class="glass-card p-10 group">
                     <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
                         <i class="fas fa-vial text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Nutrient Bio-Tech</h3>
-                    <p class="text-gray-400 leading-relaxed">Custom organic serum injections for your lawn. We analyze soil at a molecular level.</p>
+                    <p class="text-gray-400">Custom organic serum injections for your lawn analyzed at a molecular level.</p>
                 </div>
             </div>
         </div>
@@ -212,84 +188,45 @@
     <!-- Contact Form Section -->
     <section id="contact" class="py-24 px-6 bg-gradient-to-b from-[#0a0f0b] to-[#050a06]">
         <div class="max-w-5xl mx-auto glass-card p-12 md:p-20 relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-10 opacity-10">
-                <i class="fas fa-leaf text-[200px]"></i>
-            </div>
-            
             <div class="relative z-10 grid md:grid-cols-2 gap-16">
                 <div>
                     <h2 class="text-4xl md:text-5xl font-serif mb-8">Secure Your <br><span class="text-[#d4af37]">Consultation.</span></h2>
-                    <p class="text-gray-400 mb-10">Limited seasonal slots available for full estate management. Servicing LA, Napa, and the Bay Area.</p>
-                    
+                    <p class="text-gray-400 mb-10">Limited seasonal slots available. Servicing LA, Napa, and the Bay Area.</p>
                     <div class="space-y-6">
                         <div class="flex items-center space-x-4"><i class="fas fa-phone text-[#d4af37]"></i><span>(310) 555-0198</span></div>
                         <div class="flex items-center space-x-4"><i class="fas fa-envelope text-[#d4af37]"></i><span>hello@margoscaca.com</span></div>
-                        <div class="flex items-center space-x-4"><i class="fas fa-map-marker-alt text-[#d4af37]"></i><span>Beverly Hills, CA 90210</span></div>
                     </div>
                 </div>
 
                 <div class="relative">
                     <form id="contactForm" class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Full Name</label>
-                            <input type="text" id="cust_name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all" placeholder="John Doe">
-                        </div>
-                        <div>
-                            
-                            <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Phone Number</label>
-                            <input type="tel" id="cust_phone" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all" placeholder="+1 (555) 000-0000">
-                            
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Your Email (To receive AI Quote)</label>
-                            <input type="email" id="cust_email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all" placeholder="john@example.com">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Estate Location</label>
-                            <select id="cust_location" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all">
-                                <option>Los Angeles / Beverly Hills</option>
-                                <option>Napa / Sonoma Valley</option>
-                                <option>San Francisco / Bay Area</option>
-                                <option>Orange County</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-60">Message</label>
-                            <textarea id="cust_message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] transition-all" placeholder="Tell us about your property goals..."></textarea>
-                        </div>
+                        <input type="text" id="cust_name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37]" placeholder="Full Name">
+                        <input type="tel" id="cust_phone" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37]" placeholder="Phone Number">
+                        <input type="email" id="cust_email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37]" placeholder="Your Email">
+                        <select id="cust_location" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] text-white/60">
+                            <option>Los Angeles / Beverly Hills</option>
+                            <option>Napa / Sonoma Valley</option>
+                            <option>San Francisco / Bay Area</option>
+                            <option>Orange County</option>
+                        </select>
+                        <textarea id="cust_message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37]" placeholder="Message..."></textarea>
                         <button type="submit" id="submitBtn" class="btn-premium w-full">Send Inquiry</button>
                     </form>
 
-                    <!-- Success Message Overlay -->
                     <div id="successMsg" class="hidden absolute inset-0 bg-[#050a06]/95 flex flex-col items-center justify-center text-center p-10 z-20">
                         <div class="w-20 h-20 bg-[#d4af37] rounded-full flex items-center justify-center mb-6">
                             <i class="fas fa-check text-3xl text-black"></i>
                         </div>
                         <h3 class="text-3xl font-serif mb-4">Request Received</h3>
-                        <p class="text-gray-400">Our concierge will contact you within few minutes.</p>
-                        <button onclick="document.getElementById('successMsg').classList.add('hidden')" class="mt-8 text-[#d4af37] font-bold underline">Submit another</button>
+                        <button onclick="location.reload()" class="mt-8 text-[#d4af37] font-bold underline">Submit another</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-[#d4af37] rounded flex items-center justify-center">
-                    <i class="fas fa-leaf text-[#050a06] text-sm"></i>
-                </div>
-                <span class="text-xl font-extrabold uppercase tracking-tighter">Margos<span class="text-[#d4af37]">CA</span></span>
-            </div>
-            <p class="text-gray-500 text-sm">© 2026 Margo's Lawncare CA.</p>
-        </div>
-    </footer>
-
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbym_Iy9GX8-z-97O4zXvuGqWgTEraXnE0uRoVnOExTgBtJ_vQo-ckfmolLPnLS0SWFb/exec';
-        
         const form = document.getElementById('contactForm');
         const btn = document.getElementById('submitBtn');
         const successOverlay = document.getElementById('successMsg');
@@ -303,36 +240,18 @@
                 type: 'LEAD',
                 name: document.getElementById('cust_name').value,
                 email: document.getElementById('cust_email').value,
-                phone: document.getElementById('cust_phone').value, // ENSURE THIS ID EXISTS IN HTML
+                phone: document.getElementById('cust_phone').value,
                 location: document.getElementById('cust_location').value,
                 message: document.getElementById('cust_message').value
             };
-            
+
             fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' }
             })
             .then(res => {
-                successOverlay.classList.remove('hidden'); 
-                form.reset();
-                btn.disabled = false;
-                btn.innerText = "Send Inquiry";
-            })
-            .catch(error => {
-                alert("System busy. Please try again.");
-                btn.disabled = false;
-                btn.innerText = "Send Inquiry";
-            });
-        });
-            
-            fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' }
-            })
-            .then(res => {
-                successOverlay.classList.remove('hidden'); 
+                successOverlay.classList.remove('hidden');
                 form.reset();
                 btn.disabled = false;
                 btn.innerText = "Send Inquiry";
@@ -345,20 +264,22 @@
             });
         });
 
-        // Parallax and observer code
+        // Simple Parallax Effect
         window.addEventListener('scroll', () => {
-            const scroll = window.pageYOffset;
             const heroBg = document.querySelector('.hero-gradient');
-            if(heroBg) heroBg.style.backgroundPositionY = -(scroll * 0.5) + 'px';
+            if(heroBg) heroBg.style.backgroundPositionY = -(window.pageYOffset * 0.5) + 'px';
         });
+
+        // Intersection Observer for Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100');
-                    entry.target.classList.remove('translate-y-10');
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
                 }
             });
         }, { threshold: 0.1 });
+
         document.querySelectorAll('.glass-card').forEach(card => {
             card.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-1000');
             observer.observe(card);
