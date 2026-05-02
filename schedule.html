@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><title>Schedule Your Estate Walkthrough | Margo's</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050a06; color: white; }
+        .btn-premium { background: linear-gradient(45deg, #d4af37, #f4d03f); color: #050a06; font-weight: 800; border-radius: 50px; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+    <div class="max-w-md w-full p-10 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-md">
+        <h1 class="text-3xl font-serif text-[#d4af37] mb-6 text-center italic">Finalize Your Visit</h1>
+        <p class="text-gray-400 text-sm mb-8 text-center">Please select your preferred date and time for Mike's onsite inspection.</p>
+        
+        <form id="scheduleForm" class="space-y-6">
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-widest mb-2 opacity-60">Preferred Date</label>
+                <input type="date" id="book_date" required class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-[#d4af37]">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-widest mb-2 opacity-60">Preferred Time</label>
+                <input type="time" id="book_time" required class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-[#d4af37]">
+            </div>
+            <input type="hidden" id="cust_email"> <!-- We will pull this from the URL -->
+            <button type="submit" id="submitBtn" class="btn-premium w-full py-4">Confirm Appointment</button>
+        </form>
+        <div id="confirmMsg" class="hidden text-center mt-6">
+            <h3 class="text-[#d4af37] font-bold">Appointment Secured.</h3>
+            <p class="text-sm text-gray-400 mt-2">Check your inbox for the official confirmation.</p>
+        </div>
+    </div>
+
+    <script>
+        const scriptURL = 'YOUR_APPS_SCRIPT_URL_HERE';
+        
+        // Auto-fill email from the URL (Mike's customer clicks a link like ?email=test@test.com)
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById('cust_email').value = urlParams.get('email');
+
+        document.getElementById('scheduleForm').addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').innerText = "Securing Slot...";
+
+            const data = {
+                type: 'SCHEDULE', // Tells the script this is the second step
+                email: document.getElementById('cust_email').value,
+                date: document.getElementById('book_date').value,
+                time: document.getElementById('book_time').value
+            };
+
+            fetch(scriptURL, { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'text/plain' }})
+            .then(() => {
+                document.getElementById('scheduleForm').classList.add('hidden');
+                document.getElementById('confirmMsg').classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
