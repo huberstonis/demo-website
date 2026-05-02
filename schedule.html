@@ -11,6 +11,11 @@
         .btn-premium { background: linear-gradient(45deg, #d4af37, #f4d03f); color: #050a06; font-weight: 800; border-radius: 50px; transition: all 0.3s ease; }
         .btn-premium:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); }
         .btn-premium:disabled { opacity: 0.7; cursor: not-allowed; }
+        
+        /* Style the date/time picker icons for dark mode */
+        input::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-6">
@@ -43,13 +48,17 @@
     </div>
 
     <script>
-        // 1. SET YOUR URL HERE
+        // 1. WEB APP URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxdAaGZRM-c-j8PQx7E_Rn7ae_KK3bKs9iOFOWx7uhTNlzlxN85ZO9RnenKUpdfqdUomA/exec';
         
         // 2. AUTO-FILL EMAIL FROM URL (?email=user@example.com)
         const urlParams = new URLSearchParams(window.location.search);
         const emailField = document.getElementById('cust_email');
-        emailField.value = urlParams.get('email') || "";
+        const userEmail = urlParams.get('email');
+        
+        if (userEmail) {
+            emailField.value = userEmail;
+        }
 
         // 3. HANDLE FORM SUBMISSION
         document.getElementById('scheduleForm').addEventListener('submit', function(e) {
@@ -65,7 +74,7 @@
 
             const data = {
                 type: 'SCHEDULE', 
-                email: emailField.value,
+                email: emailField.value || "no-email-provided",
                 date: document.getElementById('book_date').value,
                 time: document.getElementById('book_time').value
             };
@@ -73,7 +82,7 @@
             fetch(scriptURL, { 
                 method: 'POST', 
                 body: JSON.stringify(data), 
-                headers: { 'Content-Type': 'text/plain' } // Essential for Google Apps Script CORS
+                headers: { 'Content-Type': 'text/plain' } 
             })
             .then(response => {
                 form.classList.add('hidden');
