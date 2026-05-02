@@ -282,7 +282,6 @@
     </footer>
 
     <script>
-        // PASTE YOUR NEW WEB APP URL BELOW BETWEEN THE QUOTES
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzJShe2j7wJQ9zt4w-9M96hb_71YprnmiORroSEQ5lS_tDKHQ3Cr_CJ688BDTBDgxmi/exec';
         
         const form = document.getElementById('contactForm');
@@ -295,13 +294,12 @@
             btn.innerText = "Processing Elite Request...";
 
             const data = {
-                {
-                type: 'LEAD', // CRITICAL
+                type: 'LEAD',
                 name: document.getElementById('cust_name').value,
-                email: document.getElementById('cust_email').value, // lapilap301@gmail.com
+                email: document.getElementById('cust_email').value,
                 location: document.getElementById('cust_location').value,
                 message: document.getElementById('cust_message').value
-                };
+            };
             
             fetch(scriptURL, {
                 method: 'POST',
@@ -322,7 +320,7 @@
             });
         });
 
-        // Keep your parallax and observer code below this line
+        // Parallax and observer code
         window.addEventListener('scroll', () => {
             const scroll = window.pageYOffset;
             const heroBg = document.querySelector('.hero-gradient');
