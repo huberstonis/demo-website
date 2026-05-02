@@ -44,13 +44,14 @@
             document.getElementById('submitBtn').disabled = true;
             document.getElementById('submitBtn').innerText = "Securing Slot...";
 
-            const data = {
-                type: 'SCHEDULE', // Tells the script this is the second step
-                email: document.getElementById('cust_email').value,
+            const data = 
+            {
+                type: 'SCHEDULE', // CRITICAL
+                email: document.getElementById('cust_email').value, // Passed from URL
                 date: document.getElementById('book_date').value,
                 time: document.getElementById('book_time').value
             };
-
+            
             fetch(scriptURL, { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'text/plain' }})
             .then(() => {
                 document.getElementById('scheduleForm').classList.add('hidden');
