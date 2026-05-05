@@ -11,7 +11,6 @@
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #050a06; 
             color: white; 
-            /* Prevent horizontal scroll */
             overflow-x: hidden; 
         }
         .btn-premium { 
@@ -24,14 +23,13 @@
             transform: scale(0.98);
             opacity: 0.9;
         }
-        /* Glassmorphism effect */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        /* Remove mobile zoom on focus by ensuring font-size is at least 16px */
+        /* Prevents mobile browser zoom-in on focus */
         input, select, textarea {
             font-size: 16px !important;
         }
@@ -39,17 +37,17 @@
 </head>
 <body class="flex items-start md:items-center justify-center min-h-screen p-4 sm:p-8">
     
-    <div class="glass-card w-full max-w-2xl rounded-[2rem] p-6 sm:p-10 md:p-12 shadow-2xl my-4">
-        <header class="text-center mb-8">
+    <div class="glass-card w-full max-w-2xl rounded-[2.5rem] p-6 sm:p-10 md:p-12 shadow-2xl my-4">
+        <header class="text-center mb-10">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-[#d4af37] tracking-tight">Confirm Details</h1>
-            <p class="text-gray-400 mt-2 text-sm sm:text-base">Please verify your information to secure your spot.</p>
+            <p class="text-gray-400 mt-2 text-sm sm:text-base">Review and complete your booking information.</p>
         </header>
         
-        <form id="scheduleForm" class="space-y-5 sm:space-y-6">
+        <form id="scheduleForm" class="space-y-6 sm:space-y-8">
             <input type="hidden" id="cust_email">
             
+            <!-- Personal Info Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-                <!-- Name Field -->
                 <div class="flex flex-col">
                     <label class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-2 px-1">Full Name</label>
                     <input type="text" id="cust_name" required 
@@ -57,68 +55,57 @@
                         class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all placeholder:opacity-20">
                 </div>
 
-                <!-- Phone Field -->
                 <div class="flex flex-col">
-                    <label class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-2 px-1">Best Contact Number</label>
+                    <label class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-2 px-1">Contact Number</label>
                     <input type="tel" id="cust_phone" required 
                         placeholder="(555) 000-0000"
                         class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all placeholder:opacity-20">
                 </div>
             </div>
 
-            <!-- Address Fields -->
-            <div class="space-y-5">
-                <div class="flex flex-col">
-                    <label class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-2 px-1">Address Line 1</label>
-                    <input type="text" id="addr1" required 
-                        placeholder="Street address"
-                        class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all placeholder:opacity-20">
-                </div>
-
-                <div class="flex flex-col">
-                    <label class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-2 px-1">Address Line 2 (Apt/Suite)</label>
-                    <input type="text" id="addr2" 
-                        placeholder="Optional"
-                        class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all placeholder:opacity-20">
-                </div>
+            <!-- Single Address Field -->
+            <div class="flex flex-col">
+                <label class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-2 px-1">Full Property Address</label>
+                <input type="text" id="prop_address" required 
+                    placeholder="123 Estate Dr, Beverly Hills, CA 90210"
+                    class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all placeholder:opacity-20">
             </div>
 
-            <!-- Date and Time -->
+            <!-- Date and Time Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                 <div class="flex flex-col">
-                    <label class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-2 px-1">Date</label>
+                    <label class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-2 px-1">Preferred Date</label>
                     <input type="date" id="book_date" required 
                         class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all appearance-none">
                 </div>
                 <div class="flex flex-col">
-                    <label class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-2 px-1">Time</label>
+                    <label class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#d4af37] mb-2 px-1">Preferred Time</label>
                     <input type="time" id="book_time" required 
                         class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition-all appearance-none">
                 </div>
             </div>
 
             <button type="submit" id="submitBtn" 
-                class="btn-premium w-full py-5 rounded-2xl text-lg uppercase tracking-widest mt-4 shadow-lg">
+                class="btn-premium w-full py-5 rounded-2xl text-lg uppercase tracking-widest mt-4 shadow-lg active:scale-95 transition-transform">
                 Confirm Appointment
             </button>
         </form>
 
         <!-- Success Message -->
-        <div id="confirmMsg" class="hidden text-center py-10 animate-pulse">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#d4af37]/20 mb-4">
-                <svg class="w-8 h-8 text-[#d4af37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div id="confirmMsg" class="hidden text-center py-10 animate-in fade-in zoom-in duration-300">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#d4af37]/10 mb-6 border border-[#d4af37]/30">
+                <svg class="w-10 h-10 text-[#d4af37]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                 </svg>
             </div>
-            <h3 class="text-[#d4af37] font-extrabold text-2xl sm:text-3xl">Success!</h3>
-            <p class="text-gray-400 mt-3 max-w-xs mx-auto">Mike has been notified. Check your email for confirmation details.</p>
+            <h3 class="text-[#d4af37] font-extrabold text-3xl mb-3">Success!</h3>
+            <p class="text-gray-400 max-w-xs mx-auto leading-relaxed">Mike has been notified of your request. A confirmation email is on its way to you.</p>
         </div>
     </div>
 
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxbH71m6-Vw4pObH65D7HXhnvvuVZ4VRaiV9ffcK1qkQKlqRia6MD7mLONsKq_39REI7Q/exec';
         
-        // Populate fields from URL parameters
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
             if(urlParams.get('email')) document.getElementById('cust_email').value = urlParams.get('email');
@@ -129,7 +116,6 @@
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             
-            // UI Loading State
             btn.disabled = true; 
             btn.innerHTML = `
                 <span class="flex items-center justify-center">
@@ -141,13 +127,13 @@
                 </span>
             `;
 
+            // Updated data object to use the single address field
             const data = {
                 type: 'SCHEDULE',
                 name: document.getElementById('cust_name').value,
                 email: document.getElementById('cust_email').value,
                 phone: document.getElementById('cust_phone').value,
-                address1: document.getElementById('addr1').value,
-                address2: document.getElementById('addr2').value,
+                address: document.getElementById('prop_address').value,
                 date: document.getElementById('book_date').value,
                 time: document.getElementById('book_time').value
             };
@@ -163,10 +149,9 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             })
             .catch(err => {
-                console.error('Error:', err);
+                console.error('Submission Error:', err);
                 btn.disabled = false;
                 btn.innerText = "Confirm Appointment";
-                // Note: Standard practice would be to show a custom toast/modal here
             });
         });
     </script>
