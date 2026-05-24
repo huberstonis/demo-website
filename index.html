@@ -1,236 +1,784 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Margos Lawncare | California's Premier Estate Management</title>
+    <title>Margos CA | Premier Residential & Estate Landscape Management</title>
+    
+    <!-- External assets and modern layout styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #1a4d2e;
             --accent: #d4af37;
-            --glass: rgba(255, 255, 255, 0.08);
+            --accent-glow: rgba(212, 175, 55, 0.15);
+            --dark-emerald: #050a06;
+            --glass-base: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-hover: rgba(255, 255, 255, 0.08);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #050a06;
+            background-color: var(--dark-emerald);
             color: #ffffff;
-            scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
         .font-serif { font-family: 'Playfair Display', serif; }
 
+        /* Premium Glassmorphism Cards */
         .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-base);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
             border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .glass-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.12);
-            border-color: var(--accent);
+            transform: translateY(-8px);
+            background: var(--glass-hover);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px var(--accent-glow);
+        }
+
+        /* Gold Gradient Elements */
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-gradient {
-            background: linear-gradient(180deg, rgba(5,10,6,0) 0%, rgba(5,10,6,1) 100%),
+            background: linear-gradient(180deg, rgba(5,10,6,0.4) 0%, rgba(5,10,6,0.95) 80%, rgba(5,10,6,1) 100%),
                         url('https://images.unsplash.com/photo-1558905619-171549467724?auto=format&fit=crop&q=80&w=2000');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
         }
 
+        /* Navigation Interactive Lines */
         .nav-link { position: relative; }
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 0;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .nav-link:hover::after { width: 100%; }
 
+        /* Custom Elegant Button styling */
         .btn-premium {
-            background: linear-gradient(45deg, #d4af37, #f4d03f);
+            background: linear-gradient(135deg, #f4d03f, #d4af37, #aa7c11);
+            background-size: 200% auto;
             color: #050a06;
-            font-weight: 800;
+            font-weight: 700;
+            letter-spacing: 0.05em;
             padding: 1rem 2.5rem;
-            border-radius: 50px;
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-            transition: all 0.3s;
-            border: none;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             cursor: pointer;
-            display: inline-block;
-            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-premium:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+            background-position: right center;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.45);
+        }
+
+        .btn-premium:active {
+            transform: translateY(1px) scale(0.99);
         }
 
         .btn-premium:disabled {
-            opacity: 0.5;
+            opacity: 0.6;
             cursor: not-allowed;
+            transform: none !important;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        /* Custom Secondary Button */
+        .btn-outline-gold {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .floating { animation: float 6s ease-in-out infinite; }
-
-        .image-reveal {
-            position: relative;
-            overflow: hidden;
-            border-radius: 24px;
+        .btn-outline-gold:hover {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.05);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
         }
-        .image-reveal img { transition: transform 0.8s; }
-        .image-reveal:hover img { transform: scale(1.1); }
 
-        ::-webkit-scrollbar { width: 8px; }
+        /* Float effects for visual engagement */
+        @keyframes subtleFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(0.5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .floating-art { animation: subtleFloat 8s ease-in-out infinite; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #050a06; }
-        ::-webkit-scrollbar-thumb { background: #1a4d2e; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #1a4d2e; border: 2px solid #050a06; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center bg-black/40 backdrop-blur-md rounded-full px-8 py-3 border border-white/10">
-            <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-[#d4af37] rounded-lg flex items-center justify-center">
+    <nav class="fixed w-full z-50 px-4 md:px-8 py-5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-[#050a06]/75 backdrop-blur-xl rounded-full px-6 md:px-8 py-3 border border-white/10 shadow-2xl transition-all duration-300" id="navbar">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-[#d4af37] to-[#aa7c11] rounded-xl flex items-center justify-center shadow-lg shadow-yellow-600/20">
                     <i class="fas fa-leaf text-[#050a06] text-xl"></i>
                 </div>
-                <span class="text-2xl font-extrabold tracking-tighter uppercase">Margos<span class="text-[#d4af37]">CA</span></span>
+                <div class="flex flex-col">
+                    <span class="text-xl md:text-2xl font-extrabold tracking-widest uppercase leading-none">Margos<span class="text-[#d4af37]">CA</span></span>
+                    <span class="text-[9px] tracking-[0.3em] text-[#d4af37] uppercase font-bold">Premium Residential</span>
+                </div>
             </div>
             
-            <div class="hidden md:flex space-x-10 font-semibold tracking-wide">
-                <a href="#services" class="nav-link">Expertise</a>
-                <a href="#contact" class="nav-link">Contact</a>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 lg:space-x-12 font-medium tracking-wide text-sm text-gray-300">
+                <a href="#services" class="nav-link hover:text-white transition-colors duration-200">Our Expertise</a>
+                <a href="#portfolio" class="nav-link hover:text-white transition-colors duration-200">Private Estates</a>
+                <a href="#calculator" class="nav-link hover:text-white transition-colors duration-200">Acreage Configurator</a>
+                <a href="#testimonials" class="nav-link hover:text-white transition-colors duration-200">Reviews</a>
+                <a href="#contact" class="nav-link hover:text-white transition-colors duration-200">Contact</a>
             </div>
 
-            <a href="#contact" class="hidden md:block btn-premium text-sm py-2 px-6">Book an Audit</a>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#contact" class="btn-premium text-xs py-2.5 px-6">Secure Consultation</a>
+            </div>
             
-            <button class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
+            <!-- Mobile Menu Toggle Button -->
+            <button class="md:hidden text-2xl text-gray-300 hover:text-white focus:outline-none transition-colors" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-3 mx-2 bg-[#050a06]/95 border border-white/10 backdrop-blur-2xl rounded-3xl p-6 shadow-2xl transition-all duration-300 ease-in-out">
+            <div class="flex flex-col space-y-4 font-semibold text-base">
+                <a href="#services" class="mobile-nav-link text-gray-300 hover:text-white py-2 flex items-center justify-between"><span>Our Expertise</span> <i class="fas fa-chevron-right text-xs text-white/30"></i></a>
+                <a href="#portfolio" class="mobile-nav-link text-gray-300 hover:text-white py-2 flex items-center justify-between"><span>Private Estates</span> <i class="fas fa-chevron-right text-xs text-white/30"></i></a>
+                <a href="#calculator" class="mobile-nav-link text-gray-300 hover:text-white py-2 flex items-center justify-between"><span>Acreage Configurator</span> <i class="fas fa-chevron-right text-xs text-white/30"></i></a>
+                <a href="#testimonials" class="mobile-nav-link text-gray-300 hover:text-white py-2 flex items-center justify-between"><span>Reviews</span> <i class="fas fa-chevron-right text-xs text-white/30"></i></a>
+                <a href="#contact" class="mobile-nav-link text-[#d4af37] py-2 flex items-center justify-between"><span>Book Premium Audit</span> <i class="fas fa-chevron-right text-xs text-white/30"></i></a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center hero-gradient px-6 overflow-hidden">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10 pt-20">
-            <div class="space-y-8">
-                <span class="inline-block px-4 py-1 rounded-full bg-white/10 border border-white/20 text-[#d4af37] text-sm font-bold tracking-widest uppercase">
-                    Redefining California Landscapes
+    <section class="relative min-h-screen flex items-center justify-center hero-gradient px-4 md:px-8 overflow-hidden">
+        <!-- Floating Ambient Glows -->
+        <div class="absolute top-1/4 left-1/10 w-96 h-96 bg-[#1a4d2e]/20 rounded-full filter blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/10 w-96 h-96 bg-[#d4af37]/5 rounded-full filter blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center relative z-10 pt-32 pb-16">
+            <div class="lg:col-span-7 space-y-8 text-left">
+                <span class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#d4af37] text-xs font-bold tracking-widest uppercase">
+                    <span class="w-1.5 h-1.5 bg-[#d4af37] rounded-full animate-ping"></span>
+                    <span>California's Finest Lawn & Estate Service</span>
                 </span>
-                <h1 class="text-6xl md:text-8xl font-serif leading-tight">
-                    Artistry in <br>
-                    <span class="text-[#d4af37] italic">Every Blade.</span>
+                
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif leading-[1.1] tracking-tight">
+                    Botanical Artistry <br>
+                    <span class="gold-text-gradient italic font-normal">In Every Blade.</span>
                 </h1>
-                <p class="text-xl text-gray-300 max-w-lg leading-relaxed">
-                    Beyond maintenance. We engineer sustainable, luxury outdoor environments for California's most prestigious estates.
+                
+                <p class="text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed">
+                    Engineering eco-harmonious, premium visual landscapes for California's luxury homes and architectural properties.
                 </p>
+
+                <!-- Premium Live Stats Banner inside Hero -->
+                <div class="grid grid-cols-3 gap-4 md:gap-8 pt-4 pb-4 border-y border-white/5 max-w-xl">
+                    <div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-[#d4af37] font-serif">140M+</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest">Gal. Water Saved</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-[#d4af37] font-serif">94.8%</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest">Soil Vitality</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-[#d4af37] font-serif">85+</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest">Estate Commissions</div>
+                    </div>
+                </div>
+
                 <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a href="#contact" class="btn-premium">
-                        Start Your Transformation <i class="fas fa-arrow-right ml-3"></i>
+                    <a href="#contact" class="btn-premium py-4 px-8 text-sm uppercase">
+                        Book Landscape Audit <i class="fas fa-arrow-right ml-3 text-xs"></i>
+                    </a>
+                    <a href="#portfolio" class="btn-premium btn-outline-gold py-4 px-8 text-sm uppercase rounded-full">
+                        View Private Estates
                     </a>
                 </div>
             </div>
-            <div class="hidden md:block relative">
-                <div class="floating">
-                    <div class="image-reveal border-2 border-[#d4af37]/30 shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1592595821035-98470043189c?auto=format&fit=crop&q=80&w=800" alt="Luxury Lawn">
+
+            <!-- Beautiful Floating Luxury Mockup Image/Frame representing real estate landscaping -->
+            <div class="lg:col-span-5 relative mt-8 lg:mt-0">
+                <div class="floating-art relative z-10">
+                    <div class="relative rounded-[32px] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
+                        <!-- REAL high-resolution garden estate photo overlooking coastal lines -->
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200" alt="Exquisite garden and manicured residential courtyard" class="w-full object-cover aspect-[4/5]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10">
+                            <span class="text-[9px] uppercase tracking-[0.2em] text-[#d4af37] font-bold">Featured Commission</span>
+                            <h4 class="text-lg font-serif mt-1 font-bold">The Ravello Ridge Estate, Malibu</h4>
+                            <p class="text-xs text-gray-300 mt-1">Symmetrical terracing & drought-resilient master flora planning.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Artistic Gold accents behind image -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] border-2 border-[#d4af37]/20 rounded-[40px] pointer-events-none -z-10 rotate-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-28 px-4 md:px-8 bg-[#0a0f0b] relative">
+        <div class="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-[#050a06] to-[#0a0f0b]"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+                <span class="text-[#d4af37] uppercase tracking-[0.3em] text-xs font-bold">Scientific & Sculptural Mastery</span>
+                <h2 class="text-4xl md:text-6xl font-serif">Groundwork as Fine Art</h2>
+                <div class="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto mt-4"></div>
+                <p class="text-gray-400 text-lg mt-4">We combine molecular soil science, smart high-performance irrigation systems, and hand-sculpted botanical geometry to foster immaculate health with peak aesthetic beauty.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="glass-card p-10 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/5 rounded-bl-full pointer-events-none transition-all duration-500 group-hover:bg-[#d4af37]/15"></div>
+                    <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
+                        <i class="fas fa-droplet text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-serif">Smart Irrigation</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Subsurface sensor grids monitor evaporation and water needs. Saves up to 55% water volume while maintaining pristine hydraulic grass and turf turgor.
+                    </p>
+                    <ul class="text-xs text-gray-400 space-y-2.5 mt-6 border-t border-white/5 pt-6">
+                        <li class="flex items-center space-x-2"><i class="fas fa-check text-[#d4af37] text-[10px]"></i><span>Soil-saturation telemetric node arrays</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-check text-[#d4af37] text-[10px]"></i><span>Localized high-resolution microclimate links</span></li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="glass-card p-10 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/5 rounded-bl-full pointer-events-none transition-all duration-500 group-hover:bg-[#d4af37]/15"></div>
+                    <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
+                        <i class="fas fa-scissors text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-serif">Bespoke Topiary Work</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Geometric hand-sculpting designed by expert carvers. We map the shadow values of hedges to construct stunning living architecture framing clean coastal vistas.
+                    </p>
+                    <ul class="text-xs text-gray-400 space-y-2.5 mt-6 border-t border-white/5 pt-6">
+                        <li class="flex items-center space-x-2"><i class="fas fa-check text-[#d4af37] text-[10px]"></i><span>Laser-guided alignment plane systems</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-check text-[#d4af37] text-[10px]"></i><span>Handcrafted boxwood contours & specimen shapes</span></li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="glass-card p-10 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/5 rounded-bl-full pointer-events-none transition-all duration-500 group-hover:bg-[#d4af37]/15"></div>
+                    <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
+                        <i class="fas fa-vial text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-serif">Nutrient Bio-Tech</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Custom-engineered organic biological formulations optimized to feed root structures, prevent fungal distress, and generate radiant, deep-emerald foliage colors.
+                    </p>
+                    <ul class="text-xs text-gray-400 space-y-2.5 mt-6 border-t border-white/5 pt-6">
+                        <li class="flex items-center space-x-2"><i class="fas fa-check text-[#d4af37] text-[10px]"></i><span>Advanced microbial rhizosphere soil testing</span></li>
+                        <li class="flex items-center space-x-2"><i class="fas fa-check text-[#d4af37] text-[10px]"></i><span>Slow-release bio-nutrient serums (100% Pet-Safe)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Private Estates Portfolio / Gallery -->
+    <section id="portfolio" class="py-24 px-4 md:px-8 bg-[#0a0f0b]">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-[#d4af37] uppercase tracking-[0.3em] text-xs font-bold">Crowned Landscapes</span>
+                    <h2 class="text-4xl md:text-6xl font-serif mt-2">The Private Commissions</h2>
+                </div>
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2 mt-6 md:mt-0">
+                    <button class="portfolio-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border border-white/10 bg-[#d4af37] text-[#050a06] transition-all duration-300" data-filter="all">All Estates</button>
+                    <button class="portfolio-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border border-white/10 hover:border-[#d4af37] text-gray-300 transition-all duration-300" data-filter="residential">Coastal Residential</button>
+                    <button class="portfolio-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border border-white/10 hover:border-[#d4af37] text-gray-300 transition-all duration-300" data-filter="vineyards">Napa Vineyards</button>
+                    <button class="portfolio-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border border-white/10 hover:border-[#d4af37] text-gray-300 transition-all duration-300" data-filter="architectural">Modern Sculptural</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+                <!-- Portfolio Card 1 -->
+                <div class="portfolio-item glass-card overflow-hidden group" data-category="residential">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800" alt="Beverly Hills Estate Landscape" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050a06]/90 via-transparent to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-[#d4af37] font-bold uppercase tracking-widest">Beverly Hills, CA</span>
+                        <h4 class="text-2xl font-bold font-serif text-white mt-1">The Golden Crest Villa</h4>
+                        <p class="text-sm text-gray-400 mt-2">Structured English hedge-framing engineered with custom deep hydration nodes to support massive legacy oaks.</p>
+                        <div class="flex items-center justify-between border-t border-white/5 pt-5 mt-5">
+                            <span class="text-xs text-gray-400"><i class="fas fa-expand-arrows-alt text-[#d4af37] mr-1.5"></i>3.8 Acres</span>
+                            <span class="text-xs text-gray-400"><i class="fas fa-droplet text-[#d4af37] mr-1.5"></i>-48% Water Cost</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Card 2 -->
+                <div class="portfolio-item glass-card overflow-hidden group" data-category="vineyards">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800" alt="Napa Valley Estate Landscape" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050a06]/90 via-transparent to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-[#d4af37] font-bold uppercase tracking-widest">Napa Valley, CA</span>
+                        <h4 class="text-2xl font-bold font-serif text-white mt-1">Oak Knoll Vine Estate</h4>
+                        <p class="text-sm text-gray-400 mt-2">Bespoke bio-organic lawn inoculation to enrich surrounding vineyard soils and provide pristine, velvet textures.</p>
+                        <div class="flex items-center justify-between border-t border-white/5 pt-5 mt-5">
+                            <span class="text-xs text-gray-400"><i class="fas fa-expand-arrows-alt text-[#d4af37] mr-1.5"></i>12 Acres</span>
+                            <span class="text-xs text-gray-400"><i class="fas fa-vial text-[#d4af37] mr-1.5"></i>Microbial Injections</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Card 3 -->
+                <div class="portfolio-item glass-card overflow-hidden group" data-category="architectural">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=800" alt="Atherton Modern Symmetrical Landscaping" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050a06]/90 via-transparent to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-[#d4af37] font-bold uppercase tracking-widest">Atherton, CA</span>
+                        <h4 class="text-2xl font-bold font-serif text-white mt-1">Symmetrical Oasis Hub</h4>
+                        <p class="text-sm text-gray-400 mt-2">Sculpted modern lawn panels tailored to highlight concrete architectural lines. Features smart subsurface irrigation control.</p>
+                        <div class="flex items-center justify-between border-t border-white/5 pt-5 mt-5">
+                            <span class="text-xs text-gray-400"><i class="fas fa-expand-arrows-alt text-[#d4af37] mr-1.5"></i>2.4 Acres</span>
+                            <span class="text-xs text-gray-400"><i class="fas fa-sliders text-[#d4af37] mr-1.5"></i>AI Hydro Control</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-24 px-6 bg-[#0a0f0b]">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-6xl font-serif mb-16 text-center">Our Expertise</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-10 group">
-                    <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
-                        <i class="fas fa-droplet text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
+    <!-- Interactive Acreage & Service Configurator -->
+    <section id="calculator" class="py-24 px-4 md:px-8 bg-[#0a0f0b]">
+        <div class="max-w-5xl mx-auto glass-card p-8 md:p-16 border border-[#d4af37]/20">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-4">
+                <span class="text-[#d4af37] uppercase tracking-[0.3em] text-xs font-bold">Configure Your Requirements</span>
+                <h2 class="text-3xl md:text-5xl font-serif">Acreage & Landscape Configurator</h2>
+                <p class="text-gray-400">Estimate water conservation metrics, bio-nutrient requirements, and instantly pre-fill your specifications into our Consultation form below.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <!-- Step 1: Select Acreage Range -->
+                    <div class="space-y-4">
+                        <label class="block text-sm font-bold uppercase tracking-wider text-gray-300">1. Select Estate Grounds Area</label>
+                        <div class="grid grid-cols-2 gap-3" id="acreage-container">
+                            <button class="acreage-btn p-4 rounded-xl border border-white/10 text-left bg-white/5 hover:border-[#d4af37]/60 transition-all text-xs font-bold uppercase tracking-wide flex flex-col justify-between" data-factor="1.2" data-acreage="0.5 - 2.0 Acres">
+                                <span>Mid-Size Manor</span>
+                                <span class="text-[#d4af37] mt-1 font-serif text-sm">0.5 - 2 Acres</span>
+                            </button>
+                            <button class="acreage-btn p-4 rounded-xl border border-[#d4af37] text-left bg-[#d4af37]/10 text-white transition-all text-xs font-bold uppercase tracking-wide flex flex-col justify-between" data-factor="2.4" data-acreage="2.0 - 5.0 Acres">
+                                <span>Premier Estate</span>
+                                <span class="text-[#d4af37] mt-1 font-serif text-sm">2 - 5 Acres</span>
+                            </button>
+                            <button class="acreage-btn p-4 rounded-xl border border-white/10 text-left bg-white/5 hover:border-[#d4af37]/60 transition-all text-xs font-bold uppercase tracking-wide flex flex-col justify-between" data-factor="4.8" data-acreage="5.0 - 10.0 Acres">
+                                <span>Sovereign Manor</span>
+                                <span class="text-[#d4af37] mt-1 font-serif text-sm">5 - 10 Acres</span>
+                            </button>
+                            <button class="acreage-btn p-4 rounded-xl border border-white/10 text-left bg-white/5 hover:border-[#d4af37]/60 transition-all text-xs font-bold uppercase tracking-wide flex flex-col justify-between" data-factor="8.5" data-acreage="10.0+ Acres">
+                                <span>Legacy Ranch</span>
+                                <span class="text-[#d4af37] mt-1 font-serif text-sm">10+ Acres</span>
+                            </button>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Smart Irrigation</h3>
-                    <p class="text-gray-400">AI-driven water management designed for California's climate cycles.</p>
+
+                    <!-- Step 2: Select Main Priority Goal -->
+                    <div class="space-y-4">
+                        <label class="block text-sm font-bold uppercase tracking-wider text-gray-300">2. Select Primary Goal</label>
+                        <select id="calc-priority" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] text-white">
+                            <option value="Water Conservation & AI Retrofitting">Maximum Water Conservation & Smart Irrigation</option>
+                            <option value="Prestige Geometric Turf Overhaul" selected>High-Definition Geometric Lawn & Hedge Sculpting</option>
+                            <option value="Biological Soil Vitality Restoration">Deep Root Biological Soil Regeneration</option>
+                            <option value="Unified Multi-Tier Estate Re-Design">Unified Master Botanical Re-Design</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="glass-card p-10 group">
-                    <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
-                        <i class="fas fa-scissors text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
+
+                <!-- Simulation Output Side Panel -->
+                <div class="bg-black/50 border border-white/10 rounded-3xl p-8 space-y-6">
+                    <h4 class="text-xl font-serif text-white font-bold pb-4 border-b border-white/10">Estimated Annual Impacts</h4>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-400">Est. Water Saved Annually:</span>
+                            <span class="text-[#d4af37] font-bold font-serif text-lg" id="calc-water">240,000 Gallons</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-400">Estimated Soil Microbial Level:</span>
+                            <span class="text-[#d4af37] font-bold font-serif text-lg" id="calc-soil">+280% (Optimum)</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-400">Landscape Value Appreciation:</span>
+                            <span class="text-[#d4af37] font-bold font-serif text-lg" id="calc-value">Up to 12%</span>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Boutique Sculpting</h3>
-                    <p class="text-gray-400">Precision hedging and topiary work that treats shrubs like living sculptures.</p>
-                </div>
-                <div class="glass-card p-10 group">
-                    <div class="w-16 h-16 bg-[#d4af37]/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] transition-all duration-500">
-                        <i class="fas fa-vial text-3xl text-[#d4af37] group-hover:text-[#050a06]"></i>
+
+                    <div class="pt-6 border-t border-white/10 text-center">
+                        <button id="calc-sync-btn" class="btn-premium w-full text-xs uppercase py-3.5 px-6">
+                            Lock Settings & Pre-fill Form <i class="fas fa-arrow-down ml-2"></i>
+                        </button>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Nutrient Bio-Tech</h3>
-                    <p class="text-gray-400">Custom organic serum injections for your lawn analyzed at a molecular level.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Form Section -->
-    <section id="contact" class="py-24 px-6 bg-gradient-to-b from-[#0a0f0b] to-[#050a06]">
-        <div class="max-w-5xl mx-auto glass-card p-12 md:p-20 relative overflow-hidden">
-            <div class="relative z-10 grid md:grid-cols-2 gap-16">
-                <div>
-                    <h2 class="text-4xl md:text-5xl font-serif mb-8">Secure Your <br><span class="text-[#d4af37]">Consultation.</span></h2>
-                    <p class="text-gray-400 mb-10">Limited seasonal slots available. Servicing LA, Napa, and the Bay Area.</p>
-                    <div class="space-y-6">
-                        <div class="flex items-center space-x-4"><i class="fas fa-phone text-[#d4af37]"></i><span>(310) 555-0198</span></div>
-                        <div class="flex items-center space-x-4"><i class="fas fa-envelope text-[#d4af37]"></i><span>hello@margoscaca.com</span></div>
+    <section id="contact" class="py-24 px-4 md:px-8 bg-gradient-to-b from-[#0a0f0b] to-[#050a06] relative">
+        <div class="absolute bottom-10 left-10 w-96 h-96 bg-[#d4af37]/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto glass-card p-8 md:p-16 relative overflow-hidden">
+            <div class="relative z-10">
+                <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+                    <span class="text-[#d4af37] uppercase tracking-[0.3em] text-xs font-bold block">Secure Your Space</span>
+                    <h2 class="text-4xl md:text-5xl font-serif">Request Your Private Consultation</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Seasonal openings are capped to maintain our high service benchmark. Our experts service Los Angeles, Orange County, Napa Valley, and the Bay Area.
+                    </p>
+                </div>
+
+                <!-- Simple, Beautiful, High-converting contact form -->
+                <form id="contactForm" class="max-w-2xl mx-auto space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2" for="cust_name">Full Name</label>
+                            <input type="text" id="cust_name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:outline-none focus:border-[#d4af37] placeholder-gray-500 text-white transition-all duration-300" placeholder="e.g. Frederick Sterling">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2" for="cust_phone">Phone Number</label>
+                            <input type="tel" id="cust_phone" required class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:outline-none focus:border-[#d4af37] placeholder-gray-500 text-white transition-all duration-300" placeholder="e.g. (310) 555-0198">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2" for="cust_email">Email Address</label>
+                            <input type="email" id="cust_email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:outline-none focus:border-[#d4af37] placeholder-gray-500 text-white transition-all duration-300" placeholder="e.g. sterling@domain.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2" for="cust_location">Estate Location</label>
+                            <select id="cust_location" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-[18px] focus:outline-none focus:border-[#d4af37] text-gray-300 font-medium">
+                                <option class="bg-[#050a06]">Los Angeles / Beverly Hills</option>
+                                <option class="bg-[#050a06]">Napa / Sonoma Valley</option>
+                                <option class="bg-[#050a06]">San Francisco / Bay Area</option>
+                                <option class="bg-[#050a06]">Orange County</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2" for="cust_message">Message & Property Details</label>
+                        <textarea id="cust_message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:outline-none focus:border-[#d4af37] placeholder-gray-500 text-white transition-all duration-300" placeholder="A brief description of your lawn layout, acreage, or landscaping vision..."></textarea>
+                    </div>
+
+                    <div class="text-center pt-2">
+                        <button type="submit" id="submitBtn" class="btn-premium w-full md:w-auto md:px-12 py-4 text-xs tracking-widest uppercase">
+                            Send Prestige Inquiry
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Successful Overlay Submission System -->
+                <div id="successMsg" class="hidden absolute inset-0 bg-[#050a06]/95 flex flex-col items-center justify-center text-center p-8 z-20 rounded-3xl border border-[#d4af37]">
+                    <div class="w-20 h-20 bg-gradient-to-br from-[#d4af37] to-[#aa7c11] rounded-full flex items-center justify-center mb-6 shadow-xl shadow-yellow-600/20">
+                        <i class="fas fa-check text-3xl text-[#050a06]"></i>
+                    </div>
+                    <h3 class="text-3xl font-serif mb-4 text-white">Inquiry Received Successfully</h3>
+                    <p class="text-sm text-gray-400 max-w-xs leading-relaxed">
+                        Our private director is reviewing your estate profile. You will receive an exclusive callback within 2 hours.
+                    </p>
+                    <button onclick="location.reload()" class="mt-8 text-[#d4af37] font-bold text-xs uppercase tracking-wider hover:underline flex items-center space-x-2">
+                        <span>Submit another</span> <i class="fas fa-arrow-rotate-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elite Testimonials Section -->
+    <section id="testimonials" class="py-24 px-4 md:px-8 bg-[#050a06] relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <span class="text-[#d4af37] uppercase tracking-[0.3em] text-xs font-bold">Patron Reviews</span>
+                <h2 class="text-4xl md:text-5xl font-serif">Praise from Discerning Patrons</h2>
+                <p class="text-gray-400">Read verified statements from landowners who demand flawless physical perfection and ecological responsibility.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="glass-card p-10 flex flex-col justify-between relative">
+                    <span class="absolute top-8 right-10 text-6xl text-[#d4af37]/10 font-serif">“</span>
+                    <div class="space-y-4">
+                        <div class="flex text-[#d4af37] space-x-1">
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                        </div>
+                        <p class="text-gray-300 italic text-base leading-relaxed">
+                            "Before Margos, our water bills in Beverly Hills were astronomical and the garden looked stressed. They didn't just trim hedges; they completely redesigned our hydration layout. The turf density and vibrant emerald shade are now stunning."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-8 border-t border-white/10 pt-6">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" alt="Frederick S. Sterling" class="w-12 h-12 rounded-full object-cover border border-[#d4af37]">
+                        <div>
+                            <h5 class="font-bold text-white text-sm">Frederick S. Sterling</h5>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest">Atherton Estate Owner</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="relative">
-                    <form id="contactForm" class="space-y-6">
-                        <input type="text" id="cust_name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37]" placeholder="Full Name">
-                        <input type="tel" id="cust_phone" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37]" placeholder="Phone Number">
-                        <input type="email" id="cust_email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37]" placeholder="Your Email">
-                        <select id="cust_location" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37] text-white/60">
-                            <option>Los Angeles / Beverly Hills</option>
-                            <option>Napa / Sonoma Valley</option>
-                            <option>San Francisco / Bay Area</option>
-                            <option>Orange County</option>
-                        </select>
-                        <textarea id="cust_message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#d4af37]" placeholder="Message..."></textarea>
-                        <button type="submit" id="submitBtn" class="btn-premium w-full">Send Inquiry</button>
-                    </form>
-
-                    <div id="successMsg" class="hidden absolute inset-0 bg-[#050a06]/95 flex flex-col items-center justify-center text-center p-10 z-20">
-                        <div class="w-20 h-20 bg-[#d4af37] rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-check text-3xl text-black"></i>
+                <!-- Testimonial 2 -->
+                <div class="glass-card p-10 flex flex-col justify-between relative">
+                    <span class="absolute top-8 right-10 text-6xl text-[#d4af37]/10 font-serif">“</span>
+                    <div class="space-y-4">
+                        <div class="flex text-[#d4af37] space-x-1">
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
                         </div>
-                        <h3 class="text-3xl font-serif mb-4">Request Received</h3>
-                        <button onclick="location.reload()" class="mt-8 text-[#d4af37] font-bold underline">Submit another</button>
+                        <p class="text-gray-300 italic text-base leading-relaxed">
+                            "Their molecular nutrient injections literally resurrected our heritage estate lawn. The grass has a gorgeous, dense bounce and holds a luxurious deep green hue without needing wasteful amounts of water. Absolute masterclass in horticulture."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-8 border-t border-white/10 pt-6">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150" alt="Dr. Evelyn Vance" class="w-12 h-12 rounded-full object-cover border border-[#d4af37]">
+                        <div>
+                            <h5 class="font-bold text-white text-sm">Dr. Evelyn Vance</h5>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest">Napa Valley Vineyard Owner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="glass-card p-10 flex flex-col justify-between relative">
+                    <span class="absolute top-8 right-10 text-6xl text-[#d4af37]/10 font-serif">“</span>
+                    <div class="space-y-4">
+                        <div class="flex text-[#d4af37] space-x-1">
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                            <i class="fas fa-star text-xs"></i>
+                        </div>
+                        <p class="text-gray-300 italic text-base leading-relaxed">
+                            "A highly professional crew who operates like artisans rather than common gardeners. They are exceptionally careful, highly scientific, and always clean. The estate's valuation went up significantly simply from curb presence."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-8 border-t border-white/10 pt-6">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150" alt="Julian Montgomery" class="w-12 h-12 rounded-full object-cover border border-[#d4af37]">
+                        <div>
+                            <h5 class="font-bold text-white text-sm">Julian Montgomery</h5>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest">Montecito Estate Owner</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Beautiful Footer Section -->
+    <footer class="bg-[#050a06] border-t border-white/10 py-16 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-[#d4af37] to-[#aa7c11] rounded-xl flex items-center justify-center">
+                    <i class="fas fa-leaf text-[#050a06] text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-widest uppercase">Margos<span class="text-[#d4af37]">CA</span></span>
+                    <span class="text-[8px] tracking-[0.3em] text-[#d4af37] uppercase font-bold">Premium Residential</span>
+                </div>
+            </div>
+            
+            <p class="text-xs text-gray-500 font-medium text-center md:text-left">
+                © 2026 Margos Estate Management CA. All Rights Reserved. Designed for prestigious architectural integrity.
+            </p>
+
+            <div class="flex space-x-6 text-gray-400 font-semibold text-lg">
+                <a href="#" aria-label="Instagram Link" class="hover:text-[#d4af37] transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn Link" class="hover:text-[#d4af37] transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Pinterest Link" class="hover:text-[#d4af37] transition-colors"><i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Elegant Gold Toast System (Alternative to standard window alerts) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-500 pointer-events-none">
+        <div class="bg-black/95 border border-[#d4af37] text-white px-6 py-4 rounded-2xl flex items-center space-x-3 shadow-2xl backdrop-blur-xl">
+            <div class="w-8 h-8 rounded-full bg-[#d4af37]/20 flex items-center justify-center">
+                <i class="fas fa-triangle-exclamation text-xs text-[#d4af37]" id="toast-icon"></i>
+            </div>
+            <div>
+                <h5 class="text-xs uppercase tracking-widest text-gray-400 font-bold" id="toast-title">System Status</h5>
+                <p class="text-sm text-gray-100 font-medium mt-0.5" id="toast-message">Unable to process your request.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Legacy Script API parameters preserved perfectly
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxs_BD9S0ZePeQ0dBHeseWIOzaBvUIL7ogB_QcQgBMil0LP7qj7DLzjAdu-Erfaoy_QbQ/exec';
         const form = document.getElementById('contactForm');
         const btn = document.getElementById('submitBtn');
         const successOverlay = document.getElementById('successMsg');
 
+        // Navigation responsive menu controller
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile dropdown when a navigation link is clicked
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Elegant Toast notification implementation (replaces system alerts)
+        function showNotification(title, message, isSuccess = false) {
+            const toast = document.getElementById('toast');
+            const toastTitle = document.getElementById('toast-title');
+            const toastMessage = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastTitle.innerText = title;
+            toastMessage.innerText = message;
+
+            if (isSuccess) {
+                toastIcon.className = "fas fa-check text-xs text-[#d4af37]";
+            } else {
+                toastIcon.className = "fas fa-triangle-exclamation text-xs text-[#d4af37]";
+            }
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 5000);
+        }
+
+        // Custom Pricing Configurator Logic
+        const acreageBtns = document.querySelectorAll('.acreage-btn');
+        const calcPriority = document.getElementById('calc-priority');
+        const calcWater = document.getElementById('calc-water');
+        const calcSoil = document.getElementById('calc-soil');
+        const calcValue = document.getElementById('calc-value');
+        const calcSyncBtn = document.getElementById('calc-sync-btn');
+
+        let selectedAcreageText = "2.0 - 5.0 Acres";
+        let activeMultiplier = 2.4;
+
+        function runConfigCalculation() {
+            const calculatedWater = Math.floor(activeMultiplier * 105000);
+            const calculatedSoilBoost = Math.floor(200 + (activeMultiplier * 35));
+            const calculatedHomeBoost = Math.floor(8 + (activeMultiplier * 0.9));
+
+            calcWater.innerText = `${calculatedWater.toLocaleString()} Gallons`;
+            calcSoil.innerText = `+${calculatedSoilBoost}% (Optimal)`;
+            calcValue.innerText = `Up to ${Math.min(calculatedHomeBoost, 18)}%`;
+        }
+
+        acreageBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                acreageBtns.forEach(b => {
+                    b.classList.remove('border-[#d4af37]', 'bg-[#d4af37]/10');
+                    b.classList.add('border-white/10', 'bg-white/5');
+                });
+                btn.classList.add('border-[#d4af37]', 'bg-[#d4af37]/10');
+                btn.classList.remove('border-white/10', 'bg-white/5');
+
+                activeMultiplier = parseFloat(btn.dataset.factor);
+                selectedAcreageText = btn.dataset.acreage;
+                runConfigCalculation();
+            });
+        });
+
+        calcPriority.addEventListener('change', runConfigCalculation);
+
+        calcSyncBtn.addEventListener('click', () => {
+            // Populate contact form directly from customized selections
+            const custMessageField = document.getElementById('cust_message');
+            custMessageField.value = `Hello Margos, I used the configurator tools. We need elite management for our ${selectedAcreageText} estate landscape. Our focal goal is: ${calcPriority.value}. Please prepare details for our consultation.`;
+            
+            // Auto-smooth scroll directly to the booking section
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            showNotification("Configured Successfully", "Your estate details have been imported into the contact inquiry below.", true);
+        });
+
+        // Portfolio Category Filter Management
+        const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-[#d4af37]', 'text-[#050a06]');
+                    b.classList.add('hover:border-[#d4af37]', 'text-gray-300');
+                });
+                btn.classList.add('bg-[#d4af37]', 'text-[#050a06]');
+                btn.classList.remove('hover:border-[#d4af37]', 'text-gray-300');
+
+                const filterValue = btn.dataset.filter;
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.dataset.category === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Preserved form processor targeting exact required variables
         form.addEventListener('submit', e => {
             e.preventDefault();
             btn.disabled = true;
@@ -254,23 +802,26 @@
                 successOverlay.classList.remove('hidden');
                 form.reset();
                 btn.disabled = false;
-                btn.innerText = "Send Inquiry";
+                btn.innerText = "Send Prestige Inquiry";
+                showNotification("Request Sent", "Your botanical audit request is being cataloged.", true);
             })
             .catch(error => {
                 console.error('Error!', error.message);
-                alert("System busy. Please try again.");
+                showNotification("Network Issue", "Our communications server is occupied. Please retry in a moment.", false);
                 btn.disabled = false;
-                btn.innerText = "Send Inquiry";
+                btn.innerText = "Send Prestige Inquiry";
             });
         });
 
-        // Simple Parallax Effect
+        // Parallax scroll calculation logic
         window.addEventListener('scroll', () => {
             const heroBg = document.querySelector('.hero-gradient');
-            if(heroBg) heroBg.style.backgroundPositionY = -(window.pageYOffset * 0.5) + 'px';
+            if (heroBg) {
+                heroBg.style.backgroundPositionY = -(window.pageYOffset * 0.45) + 'px';
+            }
         });
 
-        // Intersection Observer for Animations
+        // Intersection Observer animation entry
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -281,7 +832,7 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.glass-card').forEach(card => {
-            card.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-1000');
+            card.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-[1200ms]');
             observer.observe(card);
         });
     </script>
